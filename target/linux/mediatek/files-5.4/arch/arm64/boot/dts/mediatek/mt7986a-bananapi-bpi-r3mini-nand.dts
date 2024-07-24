@@ -158,6 +158,7 @@
 	mtketh-wan = "eth1";
 	mtketh-lan = "eth0";
 	mtketh-max-gmac = <2>;
+	ext-devices-prefix = "usb", "wwan","rmnet","eth3","eth4","eth5";
 	status = "okay";
 };
 
