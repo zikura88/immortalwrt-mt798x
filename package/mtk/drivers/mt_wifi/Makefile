@@ -344,7 +344,7 @@ if [ "$$(CONFIG_MTK_WIFI_FW_BIN_LOAD)" = "y" ]; then \
 			$(1)/lib/firmware/; \
 		fi; \
 		if [ "$$(CONFIG_MTK_WIFI_SKU_TYPE)" = "AX4200" ] ; then \
-			$(INSTALL_BIN) $(PKG_BUILD_DIR)/bin/mt7986/rebb/MT7986_ePAeLNA_EEPROM_ONEADIE_DBDC.bin \
+			$(INSTALL_BIN) ./files/$$(MT7986_FW_DIR)/MT7986_ePAeLNA_EEPROM_ONEADIE_DBDC.bin \
 			$(1)/lib/firmware/; \
 		fi; \
 	fi; \
