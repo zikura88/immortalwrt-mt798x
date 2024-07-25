@@ -30,7 +30,7 @@
 		status_led: green {
 			label = "r3mini:green";
 			gpios = <&pio 19 GPIO_ACTIVE_HIGH>;
-		}
+		};
 	};
 
 	fan: pwm-fan {
