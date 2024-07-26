@@ -31,6 +31,18 @@
 			label = "r3mini:green";
 			gpios = <&pio 19 GPIO_ACTIVE_HIGH>;
 		};
+
+		led-1 {
+			label = "r3mini:blue1";
+			gpios = <&pio 1 GPIO_ACTIVE_HIGH>;
+			default-state = "on";
+		};
+
+		led-2 {
+			label = "r3mini:blue2";
+			gpios = <&pio 2 GPIO_ACTIVE_HIGH>;
+			default-state = "on";
+		};
 	};
 
 	fan: pwm-fan {
