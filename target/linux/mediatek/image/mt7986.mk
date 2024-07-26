@@ -476,7 +476,8 @@ define Device/BPI-R3MINI-EMMC
   DEVICE_DTS_DIR := $(DTS_DIR)/mediatek
   DEVICE_PACKAGES := $(MT7986_USB_PKGS) $(MT7986_WWAN_PKGS) \
         kmod-phy-air-en8811h bpir3_mini-properties pciutils \
-        f2fsck losetup mkf2fs f2fs-tools kmod-fs-f2fs kmod-mmc
+        f2fsck losetup mkf2fs f2fs-tools kmod-fs-f2fs kmod-mmc \
+	luci-app-ksmbd luci-i18n-ksmbd-zh-cn ksmbd-utils 
   SUPPORTED_DEVICES := bananapi,bpi-r3mini-emmc
   IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
 endef
