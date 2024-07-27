@@ -137,13 +137,13 @@
 &cpu_thermal {
 	trips {
 		cpu_trip_critical: critical {
-			temperature = <50000>;
+			temperature = <95000>;
 			hysteresis = <2000>;
 			type = "critical";
 		};
 
 		cpu_trip_hot: hot {
-			temperature = <40000>;
+			temperature = <45000>;
 			hysteresis = <2000>;
 			type = "hot";
 		};
@@ -155,7 +155,7 @@
 		};
 
 		cpu_trip_passive: passive {
-			temperature = <30000>;
+			temperature = <20000>;
 			hysteresis = <2000>;
 			type = "passive";
 		};
