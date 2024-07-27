@@ -143,7 +143,7 @@
 		};
 
 		cpu_trip_hot: hot {
-			temperature = <45000>;
+			temperature = <40000>;
 			hysteresis = <2000>;
 			type = "hot";
 		};
