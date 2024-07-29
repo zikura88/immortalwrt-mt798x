@@ -34,7 +34,8 @@ MT7986_whnat()
 	PCIe0=
 	eth_tx=229
 	eth_rx0=230
-	usb=205
+	usb=133
+ 	usb1=205
 	if [ -d "/proc/warp_ctrl/warp0" ]; then
 	wifi1_irq=237
 	wifi2_irq=237
@@ -52,7 +53,7 @@ MT7986_whnat()
 	if [ "$num_of_wifi" = "0" ]; then
 		CPU0_AFFINITY="$eth_rx0"
 		CPU1_AFFINITY="$eth_tx"
-		CPU2_AFFINITY="$usb"
+		CPU2_AFFINITY="$usb $usb1"
 		CPU3_AFFINITY=""
 
 		CPU0_RPS=""
@@ -62,7 +63,7 @@ MT7986_whnat()
 	elif [ "$num_of_wifi" = "1" ]; then
 		CPU0_AFFINITY="$eth_rx0"
 		CPU1_AFFINITY="$eth_tx"
-		CPU2_AFFINITY="$usb"
+		CPU2_AFFINITY="$usb $usb1"
 		CPU3_AFFINITY="$wifi1_irq"
 
 		CPU0_RPS="                $wifi1 $wifi1_apcli0"
@@ -72,7 +73,7 @@ MT7986_whnat()
 	elif [ "$num_of_wifi" = "2" ]; then
 		CPU0_AFFINITY="$eth_rx0"
 		CPU1_AFFINITY="$eth_tx"
-		CPU2_AFFINITY="$usb"
+		CPU2_AFFINITY="$usb $usb1"
 		CPU3_AFFINITY="$wifi1_irq $wifi2_irq"
 
 		CPU0_RPS="                $wifi1 $wifi2 $wifi1_apcli0 $wifi2_apcli0"
@@ -83,7 +84,7 @@ MT7986_whnat()
 	elif [ "$num_of_wifi" = "3" ]; then
 		CPU0_AFFINITY="$eth_tx $eth_rx0"
 		CPU1_AFFINITY="$wifi1_irq $wifi2_irq"
-		CPU2_AFFINITY="$PCIe0 $wifi3_irq $usb"
+		CPU2_AFFINITY="$PCIe0 $wifi3_irq $usb $usb1"
 		CPU3_AFFINITY=""
 
 		CPU0_RPS=""
