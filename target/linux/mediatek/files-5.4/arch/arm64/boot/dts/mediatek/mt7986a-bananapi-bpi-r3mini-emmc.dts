@@ -394,40 +394,7 @@
 			drive-strength = <MTK_DRIVE_8mA>;
 			mediatek,pull-down-adv = <0>;	/* bias-disable */
 		};
-	};
-
-	usb_ngff_pins: usb-ngff-pins {
-		ngff-gnss-off {
-			pins = "GPIO_6";
-			drive-strength = <MTK_DRIVE_8mA>;
-			mediatek,pull-up-adv = <1>;
-		};
-		ngff-pe-rst {
-			pins = "GPIO_7";
-			drive-strength = <MTK_DRIVE_8mA>;
-			mediatek,pull-up-adv = <1>;
-		};
-		ngff-wwan-off {
-			pins = "GPIO_8";
-			drive-strength = <MTK_DRIVE_8mA>;
-			mediatek,pull-up-adv = <1>;
-		};
-		ngff-pwr-off {
-			pins = "GPIO_9";
-			drive-strength = <MTK_DRIVE_8mA>;
-			mediatek,pull-up-adv = <1>;
-		};
-		ngff-rst {
-			pins = "GPIO_10";
-			drive-strength = <MTK_DRIVE_8mA>;
-			mediatek,pull-up-adv = <1>;
-		};
-		ngff-coex {
-			pins = "SPI1_CS";
-			drive-strength = <MTK_DRIVE_8mA>;
-			mediatek,pull-up-adv = <1>;
-		};
-	};
+	}
 
 	wf_2g_5g_pins: wf_2g_5g-pins {
 		mux {
@@ -465,7 +432,5 @@
 };
 
 &xhci {
-	pinctrl-names = "default";
-	pinctrl-0 = <&usb_ngff_pins>;
 	status = "okay";
 };
