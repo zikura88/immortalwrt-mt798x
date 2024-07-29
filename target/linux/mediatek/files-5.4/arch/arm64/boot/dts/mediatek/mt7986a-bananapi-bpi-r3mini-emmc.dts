@@ -394,7 +394,7 @@
 			drive-strength = <MTK_DRIVE_8mA>;
 			mediatek,pull-down-adv = <0>;	/* bias-disable */
 		};
-	}
+	};
 
 	wf_2g_5g_pins: wf_2g_5g-pins {
 		mux {
