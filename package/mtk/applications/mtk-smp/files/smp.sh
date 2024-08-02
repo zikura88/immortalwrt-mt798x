@@ -73,11 +73,9 @@ MT7986_whnat()
 	elif [ "$num_of_wifi" = "2" ]; then
 		CPU0_AFFINITY="$eth_rx0"
 		CPU1_AFFINITY="$eth_tx"
-		CPU2_AFFINITY="$usb $usb1"
-		CPU3_AFFINITY="$wifi1_irq $wifi2_irq"
+		CPU3_AFFINITY="$wifi1_irq $wifi2_irq $usb $usb1"
 
-		CPU0_RPS="                $wifi1 $wifi2 $wifi1_apcli0 $wifi2_apcli0"
-  		[ "$is_usbnet" = "1" ] && CPU0_RPS="$wifi1_apcli0 $wifi2_apcli0"
+		CPU0_RPS="$wifi1_apcli0 $wifi2_apcli0"
 		CPU1_RPS="$ethif1 $ethif2 $wifi1 $wifi2 $wifi1_apcli0 $wifi2_apcli0"
 		CPU2_RPS="$ethif1 $ethif2 $wifi1 $wifi2 $wifi1_apcli0 $wifi2_apcli0"
 		CPU3_RPS="$ethif1 $ethif2"
