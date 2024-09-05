@@ -386,6 +386,8 @@ static int hnat_hw_init(u32 ppe_id)
 	hnat_priv->g_wandev = dev_get_by_name(&init_net, hnat_priv->wan);
 
 	dev_info(hnat_priv->dev, "PPE%d hwnat start\n", ppe_id);
+	
+	spin_lock_init(&hnat_priv->entry_lock);
 
 	return 0;
 }

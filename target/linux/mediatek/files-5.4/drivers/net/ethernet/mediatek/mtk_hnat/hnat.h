@@ -697,6 +697,7 @@ struct mtk_hnat {
 	bool guest_en;
 	bool dscp_en;
 	bool macvlan_support;
+	spinlock_t		entry_lock;
 };
 
 struct extdev_entry {
