@@ -33,7 +33,7 @@ return view.extend({
 		o.rmempty = false;
 		
 		o = s.option(form.Flag, 'smarthqos', _('SMART_HWQOS'),
-		_('Enabling fair queue will automatically perform hardware offloading and forwarding for small packets, P2P downloads, and web browsing. After enabling, the maximum number available for IP speed limit will be limited to 25.'));
+		_('Enabling fair queue will automatically perform hardware offloading for every local host'));
 		o.default = o.disabled;
 		o.rmempty = false;
 		

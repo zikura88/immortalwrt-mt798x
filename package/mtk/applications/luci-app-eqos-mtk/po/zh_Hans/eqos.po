@@ -30,8 +30,8 @@ msgstr "启用"
 msgid "SMART_HWQOS"
 msgstr "智能硬件QOS"
 
-msgid "Enabling fair queue will automatically perform hardware offloading and forwarding for small packets, P2P downloads, and web browsing. After enabling, the maximum number available for IP speed limit will be limited to 25."
-msgstr "启用公平队列，将自动对小包、P2P下载、网页浏览进行硬件分流转发.启用后IP限速可用的最大编号将限制为25"
+msgid "Enabling fair queue will automatically perform hardware offloading for every local host"
+msgstr "启用硬件公平队列，局域网的每台设备将拥有相同的转发优先级，保证设备最低网速(仅对dhcp获得ip地址的设备生效,不兼容固定限速)"
 
 msgid "IPV6Enable"
 msgstr "同时作用IPV6"

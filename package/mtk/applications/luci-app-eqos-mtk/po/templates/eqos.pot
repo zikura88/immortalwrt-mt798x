@@ -25,10 +25,8 @@ msgstr ""
 
 #: package/mtk/applications/luci-app-eqos-mtk/htdocs/luci-static/resources/view/eqos.js:36
 msgid ""
-"Enabling fair queue will automatically perform hardware offloading and "
-"forwarding for small packets, P2P downloads, and web browsing. After "
-"enabling, the maximum number available for IP speed limit will be limited to "
-"25."
+"Enabling fair queue will automatically perform hardware offloading  "
+"forwarding for every local host "
 msgstr ""
 
 #: package/mtk/applications/luci-app-eqos-mtk/root/usr/share/rpcd/acl.d/luci-app-eqos.json:3

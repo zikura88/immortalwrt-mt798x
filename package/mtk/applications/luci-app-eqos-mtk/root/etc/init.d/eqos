@@ -50,7 +50,7 @@ start_service() {
         ip6tables -t mangle -A FORWARD  -j eqos             
         fi  
         
-        if [ "$smarthqos" -eq "1" ]; then   
+        if [ "$smarthqos" -eq "1" ]; then  
         for i in $(seq 1 31); do
         	if [ "$upload" -ne "0" ]; then
 		echo 2 1 $(($upload*225)) 1 $(($upload*1000)) 4 1 > /sys/kernel/debug/hnat/qdma_txq$i
@@ -60,59 +60,36 @@ start_service() {
 		if [ "$download" -ne "0" ]; then
 		echo 3 1 $(($download*200)) 1 $(($download*1000)) 4 1 > /sys/kernel/debug/hnat/qdma_txq$i
 		fi
-		done
-	echo 2 1 $(($upload*100)) 1 $(($upload*1000)) 4 1 > /sys/kernel/debug/hnat/qdma_txq30
-	echo 3 1 $(($download*150)) 1 $(($download*1000)) 4 1 > /sys/kernel/debug/hnat/qdma_txq62
-	echo 2 1 $(($upload*100)) 1 $(($upload*1000)) 4 1 > /sys/kernel/debug/hnat/qdma_txq27
-	echo 3 1 $(($download*150)) 1 $(($download*1000)) 4 1 > /sys/kernel/debug/hnat/qdma_txq59
-	
-	
-	iptables -t mangle -A eqos -i br-lan  -p tcp  -j DSCP --set-dscp 31
-	iptables -t mangle -A eqos -o br-lan  -p tcp  -j DSCP --set-dscp 63  
-	iptables -t mangle -A eqos -i br-lan  -p udp  -j DSCP --set-dscp 30
-	iptables -t mangle -A eqos -o br-lan  -p udp  -j DSCP --set-dscp 62
-	iptables -t mangle -A eqos -i br-lan  -p tcp --dport 80  -j DSCP --set-dscp 29
-	iptables -t mangle -A eqos -o br-lan  -p tcp --dport 80  -j DSCP --set-dscp 61
-	iptables -t mangle -A eqos -o br-lan  -p tcp --dport 443  -j DSCP --set-dscp 29
-	iptables -t mangle -A eqos -o br-lan  -p tcp --dport 443  -j DSCP --set-dscp 61
-	iptables -t mangle -A eqos -i br-lan  -p tcp --dport 8080  -j DSCP --set-dscp 29
-	iptables -t mangle -A eqos -o br-lan  -p tcp --dport 8080 -j DSCP --set-dscp 61
-	iptables -t mangle -A eqos -i br-lan  -p tcp --dport 8081  -j DSCP --set-dscp 29
-	iptables -t mangle -A eqos -o br-lan  -p tcp --dport 8081 -j DSCP --set-dscp 61
-	iptables -t mangle -A eqos -i br-lan  -m length --length :256 -j DSCP --set-dscp 28
-	iptables -t mangle -A eqos -o br-lan  -m length --length :256 -j DSCP --set-dscp 60
-	iptables -t mangle -A eqos -i br-lan -p udp  -m hashlimit --hashlimit-mode srcip,srcport --hashlimit-name udpout --hashlimit-above 5/sec --hashlimit-burst 5 --hashlimit-htable-expire 10000 --hashlimit-htable-gcinterval 10000 -j DSCP --set-dscp 27
-	iptables -t mangle -A eqos -o br-lan -p udp  -m hashlimit --hashlimit-mode dstip,dstport --hashlimit-name udpin --hashlimit-above 5/sec --hashlimit-burst 5 --hashlimit-htable-expire 10000 --hashlimit-htable-gcinterval 10000 -j DSCP --set-dscp 59
-
-	ip6tables -t mangle -A eqos -i br-lan -j MARK --set-mark 31
-	ip6tables -t mangle -A eqos -o br-lan -j MARK --set-mark 63 
-	ip6tables -t mangle -A eqos -p udp -i br-lan -j MARK --set-mark 30
-	ip6tables -t mangle -A eqos -p udp -o br-lan -j MARK --set-mark 62 
-	ip6tables -t mangle -A eqos -i br-lan -p tcp --dport 80  -j MARK --set-mark 29
-	ip6tables -t mangle -A eqos -o br-lan -p tcp  --dport 80  -j MARK --set-mark 61
-	ip6tables -t mangle -A eqos -i br-lan -p tcp --dport 443  -j MARK --set-mark 29
-	ip6tables -t mangle -A eqos -o br-lan -p tcp --dport 443  -j MARK --set-mark 61
-	ip6tables -t mangle -A eqos -i br-lan -p tcp --dport 8080  -j MARK --set-mark 29
-	ip6tables -t mangle -A eqos -o br-lan -p tcp --dport 8080 -j MARK --set-mark 61
-	ip6tables -t mangle -A eqos -i br-lan -p tcp --dport 8081  -j MARK --set-mark 29
-	ip6tables -t mangle -A eqos -o br-lan -p tcp --dport 8081 -j MARK --set-mark 61
-	ip6tables -t mangle -A eqos -i br-lan -m length --length :256 -j MARK --set-mark 28
-	ip6tables -t mangle -A eqos -o br-lan -m length --length :256 -j MARK --set-mark 60
-	ip6tables -t mangle -A eqos -i br-lan -p udp  -m hashlimit --hashlimit-mode srcip,srcport --hashlimit-name udp6out --hashlimit-above 5/sec --hashlimit-burst 5 --hashlimit-htable-expire 10000 --hashlimit-htable-gcinterval 10000 -j MARK --set-mark 27
-	ip6tables -t mangle -A eqos -o br-lan -p udp  -m hashlimit --hashlimit-mode dstip,dstport --hashlimit-name udp6in --hashlimit-above 5/sec --hashlimit-burst 5 --hashlimit-htable-expire 10000 --hashlimit-htable-gcinterval 10000 -j MARK --set-mark 59
-        fi 
+	done 
+	fi 
         iptables -t mangle -F PREROUTING
         if [ $interface ]; then
 	bash /usr/sbin/loadbalance "$interface"
         fi
-        
         config_foreach parse_device "device"
-        
+        if [ "$smarthqos" -eq "1" ]; then
+        rm /etc/hotplug.d/dhcp/99-eqos
+	cat << 'EOF' > /etc/hotplug.d/dhcp/99-eqos
+#!/bin/sh
+
+# 只有在新增 DHCP 租约时才执行操作
+if [ "$ACTION" = "add" ]; then
+
+    # 执行指定的命令
+    /etc/init.d/dhcp_mark.sh eqos init
+fi
+EOF
+
+        chmod +x /etc/hotplug.d/dhcp/99-eqos
+        /etc/init.d/dnsmasq restart
+        /etc/init.d/dhcp_mark.sh eqos init
+        fi   
 }
 
 stop_service() {
 	eqos stop
 	iptables -t mangle -F PREROUTING
+	rm /etc/hotplug.d/dhcp/99-eqos
 }
 
 reload_service() {
