@@ -1,7 +1,34 @@
 #!/bin/sh
 
 dev=br-lan
+hash_file="/tmp/hash_records.txt"
 
+generate_index() {
+    local input="$1"
+    local hash_value=$(echo -n "$input" | md5sum | cut -d' ' -f1)
+    local decimal_value=$((0x${hash_value:0:8}))
+    local index=$((decimal_value % 31 + 1))
+    echo $index
+}
+
+find_available_index() {
+    local base_index=$(generate_index "$1")
+    local index=$base_index
+
+    while true; do
+        if grep -q "^$index$" "$hash_file"; then
+            index=$((index % 31 + 1))
+            if [[ $index -eq $base_index ]]; then
+                echo "All slots are full. Returning 0."
+                return 0 
+            fi
+        else
+            echo $index >> "$hash_file"
+            echo $index
+            return 0
+        fi
+    done
+}
 stop_qos() {
 	tc qdisc del dev $dev root 2>/dev/null
 	tc qdisc del dev $dev ingress 2>/dev/null
@@ -12,7 +39,8 @@ stop_qos() {
 start_qos() {
 	local dl=$1
 	local up=$2
-	
+	rm /tmp/hash_records.txt
+    	touch "$hash_file"
 	tc qdisc add dev $dev root handle 1: htb
 	tc class add dev $dev parent 1: classid 1:1 htb rate ${dl}mbit
 	
@@ -97,11 +125,16 @@ case "$1" in
 		ip="$2"
 		dl="$3"
 		up="$4"
-		id="$5" idpair=$((id+32))
 		macaddr="$6"
 		cnt=$(tc class show dev $dev | wc -l)
 		
 		interface="$7"
+		if [ -n "$ip" ]; then
+		id="$(find_available_index "$ip")"
+		elif [ -n "$macaddr" ]; then
+		id="$(find_available_index "$macaddr")"
+		fi
+		idpair=$((id+32))
 		if [ $id -lt 32 ]; then
 		iptables -t mangle -D eqos -s $ip -j DSCP --set-dscp ${id}
 		iptables -t mangle -D eqos -d $ip -j DSCP --set-dscp ${idpair}

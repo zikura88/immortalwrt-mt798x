@@ -40,7 +40,7 @@ msgid "Load balance"
 msgstr "负载均衡"
 
 msgid "Please set a different gateway hop for each network interface before filling in the network interface name. Fill in PPPOE-WAN for dialing and eth1 for DHCP. Leaving it blank to disable it.Please use commas as interface name separators. Example: pppoe-wan,eth1"
-msgstr "请先为每个网络接口设置不同的网关跃点后，再填写网络接口名。拨号填写PPPOE-WAN，DHCP则填写eth1。留空则不启用.请使用逗号作为接口名分隔符.例子：pppoe-wan, eth1"
+msgstr "请先为每个网络接口设置不同的网关跃点后，再填写网络接口名。拨号填写pppoe-wan，DHCP则填写eth1。留空则不启用.请使用逗号作为接口名分隔符.例子：pppoe-wan, eth1"
 
 #: applications/luci-app-eqos/root/usr/share/rpcd/acl.d/luci-app-eqos.json:3
 msgid "Grant UCI access for luci-app-eqos"
@@ -66,8 +66,8 @@ msgid "Network speed control service.(Compatiable with Mediatek HNAT)"
 msgstr "网速控制服务(未设置限速主机可正常使用硬件加速)。"
 
 #: applications/luci-app-eqos/htdocs/luci-static/resources/view/eqos.js:38
-msgid "Speed limit and route choose based on IP address(using unique comment less than 32 will enable hardware QOS)"
-msgstr "基于 IP 分流限速(设置小于32唯一编号将启用硬件QOS.速度设置为0则取消限速)"
+msgid "Speed limit and route choose based on IP address(Auto use hardware QOS)"
+msgstr "基于 IP 分流限速(自动启用硬件QOS.速度设置为0则取消限速)"
 
 #: applications/luci-app-eqos/htdocs/luci-static/resources/view/eqos.js:29
 msgid "Total download bandwidth."
