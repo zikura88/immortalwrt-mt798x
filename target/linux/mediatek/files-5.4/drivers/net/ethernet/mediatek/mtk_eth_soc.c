@@ -3542,7 +3542,7 @@ static int mtk_probe(struct platform_device *pdev)
 		eth->rx_dma_l4_valid = RX_DMA_L4_VALID_PDMA;
 		eth->ip_align = NET_IP_ALIGN;
 	} else {
-		if (MTK_HAS_CAPS(eth->soc->caps, MTK_NETSYS_V2))
+		if (MTK_HAS_CAPS(eth->soc->caps, MTK_NETSYS_RX_V2))
 			eth->rx_dma_l4_valid = RX_DMA_L4_VALID_V2;
 		else
 			eth->rx_dma_l4_valid = RX_DMA_L4_VALID;
