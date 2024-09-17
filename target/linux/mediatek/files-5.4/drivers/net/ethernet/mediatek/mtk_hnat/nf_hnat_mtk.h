@@ -83,7 +83,7 @@ struct hnat_desc {
 #define skb_hnat_ppe(skb)				\
 	(((skb_hnat_sport(skb) == NR_GMAC2_PORT) && (CFG_PPE_NUM >= 2)) ? 1 : 0)
 #define do_ext2ge_fast_try(dev, skb)						\
-	((skb_hnat_iface(skb) == FOE_MAGIC_EXT) && !is_from_extge(skb))
+	(IS_EXT(dev) && !is_from_extge(skb) && !IS_WHNAT(dev))
 #define set_from_extge(skb) (HNAT_SKB_CB2(skb)->magic = 0x78786688)
 #define clr_from_extge(skb) (HNAT_SKB_CB2(skb)->magic = 0x0)
 #define set_to_ppe(skb) (HNAT_SKB_CB2(skb)->magic = 0x78681415)

@@ -58,12 +58,7 @@
                         };
         };
 
-        gsw: gsw@0 {
-                compatible = "mediatek,mt753x";
-                mediatek,ethsys = <&ethsys>;
-                #address-cells = <1>;
-                #size-cells = <0>;
-        };
+
 
 	nmbm_spim_nand {
                 compatible = "generic,nmbm";
@@ -115,28 +110,29 @@
 };
   
 &eth {
-    status = "okay";
+	status = "okay";
 
-    gmac0: mac@0 {
-        compatible = "mediatek,eth-mac";
-        reg = <0>;
-        phy-mode = "2500base-x";
+	gmac0: mac@0 {
+		compatible = "mediatek,eth-mac";
+		reg = <0>;
+		phy-mode = "2500base-x";
 
-        fixed-link {
-            speed = <2500>;
-            full-duplex;
-            pause;
-        };
-    };
+		fixed-link {
+			speed = <2500>;
+			full-duplex;
+			pause;
+		};
+	};
 
-    gmac1: mac@1 {
-        compatible = "mediatek,eth-mac";
-        reg = <1>;
-        phy-mode = "gmii";
-        phy-handle = <&phy0>;
-    };
+	gmac1: mac@1 {
+		compatible = "mediatek,eth-mac";
+		label = "wan";
+		reg = <1>;
+		phy-mode = "gmii";
+		phy-handle = <&phy0>;
+	};
 
-    mdio: mdio-bus {
+	mdio: mdio-bus {
 		#address-cells = <1>;
 		#size-cells = <0>;
 
@@ -147,35 +143,53 @@
 			nvmem-cells = <&phy_calibration>;
 			nvmem-cell-names = "phy-cal-data";
 		};
+
+		switch@0 {
+			compatible = "mediatek,mt7531";
+			reg = <31>;
+			reset-gpios = <&pio 39 0>;
+
+			ports {
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				port@0 {
+					reg = <0>;
+					label = "lan1";
+				};
+
+				port@1 {
+					reg = <1>;
+					label = "lan2";
+				};
+
+				port@2 {
+					reg = <2>;
+					label = "lan3";
+				};
+
+				port@6 {
+					reg = <6>;
+					label = "cpu";
+					ethernet = <&gmac0>;
+					phy-mode = "2500base-x";
+
+					fixed-link {
+						speed = <2500>;
+						full-duplex;
+						pause;
+					};
+				};
+			};
+		};
 	};
 };
 
-&gsw {
-        mediatek,mdio = <&mdio>;
-        mediatek,mdio_master_pinmux = <0>;
-        reset-gpios = <&pio 39 0>;
-        interrupt-parent = <&pio>;
-        interrupts = <38 IRQ_TYPE_LEVEL_HIGH>;
-        status = "okay";
-
-	port6: port@6 {
-		compatible = "mediatek,mt753x-port";
-		mediatek,ssc-on;
-		reg = <6>;
-		phy-mode = "sgmii";
-
-                fixed-link {
-                        speed = <2500>;
-                        full-duplex;
-                };
-        };
-};
-
 &hnat {
-        mtketh-wan = "eth1";
-        mtketh-lan = "eth0";
-        mtketh-max-gmac = <2>;
-        status = "okay";
+	mtketh-wan = "eth1";
+	mtketh-lan = "lan";
+	mtketh-max-gmac = <2>;
+	status = "okay";
 };
 
 &spi0 {

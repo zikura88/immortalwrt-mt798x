@@ -1412,8 +1412,17 @@ static int mtk_poll_rx(struct napi_struct *napi, int budget,
 				      0 : RX_DMA_GET_SPORT(trxd.rxd4) - 1;
 		}
 		
-		if (mac == 4) mac = 0;
+		if (mac == 4) mac = 1;
 		
+#if defined(CONFIG_MEDIATEK_NETSYS_RX_V2)
+			if (MTK_HAS_CAPS(eth->soc->caps, MTK_NETSYS_RX_V2))
+				mac = (RX_DMA_GET_CRSN(trxd.rxd5) == HIT_BIND_FORCE_TO_CPU) ? 1 : mac;
+			else
+#endif
+				mac = (RX_DMA_GET_CRSN(trxd.rxd4) == HIT_BIND_FORCE_TO_CPU) ? 1 : mac;
+ 
+		
+ 
 		if (unlikely(mac < 0 || mac >= MTK_MAC_COUNT ||
 			     !eth->netdev[mac]))
 			goto release_desc;
@@ -1503,7 +1512,7 @@ static int mtk_poll_rx(struct napi_struct *napi, int budget,
 		if (skb_hnat_reason(skb) == HIT_BIND_FORCE_TO_CPU) {
 			trace_printk("[%s] reason=0x%x(force to CPU) from WAN to Ext\n",
 				     __func__, skb_hnat_reason(skb));
-			skb->pkt_type = PACKET_HOST;
+			skb->pkt_type = PACKET_HOST; 
 		}
 
 		trace_printk("[%s] rxd:(entry=%x,sport=%x,reason=%x,alg=%x\n",

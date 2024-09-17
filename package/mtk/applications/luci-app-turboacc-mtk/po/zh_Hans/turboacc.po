@@ -62,8 +62,8 @@ msgid "Enable ethernet HNAT for MACVLAN WAN device"
 msgstr "启用MACVLAN WAN 设备 HNAT"
 
 #: applications/luci-app-turboacc/htdocs/luci-static/resources/view/turboacc.js:178
-msgid "Enable hardware offloading for macvlan (sing wan only)."
-msgstr "为MACVLAN 连接启用硬件加速(仅支持单WAN)。"
+msgid "Enable hardware offloading for macvlan."
+msgstr "为MACVLAN 连接启用硬件加速。"
 
 #: applications/luci-app-turboacc/htdocs/luci-static/resources/view/turboacc.js:183
 msgid "HNAT bind rate threshold (pps)"

@@ -227,7 +227,7 @@ return view.extend({
 		o.depends('fastpath_mh_eth_hnat', '1');
 		
 		o = s.option(form.Flag, 'fastpath_mh_eth_hnat_macvlan', _('Enable ethernet HNAT for MACVLAN WAN device'),
-			_('Enable hardware offloading for macvlan (sing wan only).'));
+			_('Enable hardware offloading for macvlan.'));
 		o.default = o.disabled;
 		o.rmempty = false;
 		o.depends('fastpath_mh_eth_hnat', '1');

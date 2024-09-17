@@ -24,48 +24,32 @@ mediatek_setup_interfaces()
 		;;
 	xiaomi,mi-router-ax3000t* |\
 	xiaomi,mi-router-wr30u*)
-		ucidef_set_interfaces_lan_wan "eth0" "eth1"
-		ucidef_add_switch "switch0" \
-			"1:lan" "2:lan" "3:lan" "0:wan" "6u@eth0" "5u@eth1"
+		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3" wan
 		;;
 	*360,t7*)
-		ucidef_set_interfaces_lan_wan "eth0" "eth1"
-		ucidef_add_switch "switch0" \
-			"0:lan" "1:lan" "2:lan" "3:wan" "6u@eth0" "5u@eth1"
+		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 eth1" wan
 		;;
 	*cetron,ct3003*)
-		ucidef_set_interfaces_lan_wan "eth0.1" "eth0.2"
-		ucidef_add_switch "switch0" \
-			"0:lan" "1:lan" "2:lan" "3:wan" "6t@eth0"
+		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 eth1" wan
 		;;
 	*clt,r30b1* |\
 	h3c,nx30pro |\
 	*imou,lc-hx3001* |\
 	*konka,komi-a31*)
-		ucidef_set_interfaces_lan_wan "eth0" "eth1"
-		ucidef_add_switch "switch0" \
-			"0:lan" "1:lan" "2:lan" "6u@eth0"
+		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3" wan
 		;;
 	*cmcc,a10*)
-		ucidef_set_interfaces_lan_wan "eth0" "eth1"
-		ucidef_add_switch "switch0" \
-			"0:lan" "2:lan" "3:lan" "4:wan" "6u@eth0" "5u@eth1"
+		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3" wan
 		;;
 	*jcg,q30*)
-		ucidef_set_interfaces_lan_wan "eth0.1" "eth0.2"
-		ucidef_add_switch "switch0" \
-			"1:lan" "2:lan" "3:lan" "0:wan" "6t@eth0"
+		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 eth1" wan
 		;;
 	abt,asr3000 |\
 	*rax3000m*)
-		ucidef_set_interfaces_lan_wan "eth0" "eth1"
-		ucidef_add_switch "switch0" \
-			"0:lan:3" "1:lan:2" "2:lan:1" "6u@eth0"
+		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3" wan
 		;;
 	*nokia,ea0326gmp*)
-		ucidef_set_interfaces_lan_wan "eth0" "eth1"
-		ucidef_add_switch "switch0" \
-			"1:lan" "2:lan" "3:lan" "6u@eth0"
+		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3" wan
 		;;
 	*mt3000* |\
 	glinet,x3000-emmc |\
@@ -74,9 +58,7 @@ mediatek_setup_interfaces()
 		ucidef_set_interfaces_lan_wan "eth1" "eth0"
 		;;
 	*zr-3020*)
-		ucidef_set_interfaces_lan_wan "eth0" "eth1"
-		ucidef_add_switch "switch0" \
-			"2:lan" "3:lan" "4:lan" "0:wan" "6u@eth0" "5u@eth1"
+		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3" wan
 		;;
 	nradio,wt9103)
 		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 lan4" eth1

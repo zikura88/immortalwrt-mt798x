@@ -26,13 +26,6 @@
 	memory {
 		reg = <0 0x40000000 0 0x10000000>;
 	};
-	
-	gsw: gsw@0 {
-		compatible = "mediatek,mt753x";
-		mediatek,ethsys = <&ethsys>;
-		#address-cells = <1>;
-		#size-cells = <0>;
-	};
 
   	
        gpio-keys {
@@ -97,6 +90,7 @@
 	};
 
 	gmac1: mac@1 {
+		label = "wan";
 		compatible = "mediatek,eth-mac";
 		reg = <1>;
 		phy-mode = "2500base-x";
@@ -109,62 +103,23 @@
 		};
 	};
 
-	mdio: mdio-bus {
+		mdio: mdio-bus {
 		#address-cells = <1>;
 		#size-cells = <0>;
-		reset-gpios = <&pio 6 1>;
-		reset-delay-us = <600>;
-
-		phy5: phy@5 {
-			compatible = "ethernet-phy-id67c9.de0a";
-			reg = <5>;
-		};
-
-		phy6: phy@6 {
-			compatible = "ethernet-phy-ieee802.3-c45";
-			reg = <6>;
+ 		
+		switch:switch@0 {
+			compatible = "mediatek,mt7531";
+			reg = <31>;
+			reset-gpios = <&pio 5 0>;
 		};
 	};
 };
 
-&gsw {
-	mediatek,mdio = <&mdio>;
-	mediatek,portmap = "lllll";
-	mediatek,mdio_master_pinmux = <0>;
-	reset-gpios = <&pio 5 0>;
-	interrupt-parent = <&pio>;
-	interrupts = <66 IRQ_TYPE_LEVEL_HIGH>;
-	status = "okay";
-
-	port5: port@5 {
-		compatible = "mediatek,mt753x-port";
-		reg = <5>;
-		phy-mode = "sgmii";
-
-		fixed-link {
-			speed = <2500>;
-			full-duplex;
-		};
-	};
-
-
-	port6: port@6 {
-		compatible = "mediatek,mt753x-port";
-		mediatek,ssc-on;
-		reg = <6>;
-		phy-mode = "sgmii";
-		fixed-link {
-			speed = <2500>;
-			full-duplex;
-		};
-	};
-};
 
 &hnat {
 	mtketh-wan = "eth1";
-	mtketh-lan = "eth0";
+	mtketh-lan = "lan";
 	mtketh-max-gmac = <2>;
-	mtketh-ppe-num = <2>;
 	status = "okay";
 };
 
@@ -236,7 +191,6 @@
 	status = "okay";
 };
 
-
 &spi0 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&spi_flash_pins>;
@@ -269,27 +223,26 @@
 
  			Factory: partition@160000 {
  				label = "Factory";
- 				reg = <0x160000 0x0060000>;
+ 				reg = <0x160000 0x00a0000>;
  				read-only;
  			};
 
- 			
- 			partition@1c0000 {
-				label = "reserved";
-				reg = <0x1c0000 0x01c0000>;
-				read-only;
-			};
+ 			partition@200000 {
+ 				label = "reserved";
+ 				reg = <0x200000 0x0180000>;
+ 				read-only;
+ 			};
 
-			partition@380000 {
-				label = "fip";
-				reg = <0x380000 0x0200000>;
-				read-only;
-			};
+ 			partition@380000 {
+ 				label = "fip";
+ 				reg = <0x380000 0x0180000>;
+ 				// read-only;
+ 			};
 
-			partition@580000 {
-				label = "ubi";
-				reg = <0x580000 0x7800000>;
-			};
+ 			partition@500000 {
+ 				label = "ubi";
+ 				reg = <0x500000 0x7300000>;
+ 			};
  		};
 	};
 };
@@ -303,8 +256,6 @@
 	pinctrl-1 = <&wf_dbdc_pins>;
 */
 };
-
-
 
 &watchdog {
 	status = "okay";
