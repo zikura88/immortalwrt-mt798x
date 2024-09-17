@@ -37,8 +37,6 @@
 	((IS_LAN(dev) || IS_WAN(dev) || IS_PPD(dev)) && \
 	 skb_hnat_is_hashed(skb) && \
 	 skb_hnat_reason(skb) == HIT_BIND_FORCE_TO_CPU)
-#define do_ge2ext_fast1(dev, skb)                                               \
-	(  skb_hnat_reason(skb) == HIT_BIND_FORCE_TO_CPU)
 #define do_ext2ge_fast_learn(dev, skb)                                         \
 	(IS_PPD(dev) &&                                                        \
 	 (skb_hnat_sport(skb) == NR_PDMA_PORT ||                           \
@@ -567,8 +565,7 @@ unsigned int do_hnat_ext_to_ge2(struct sk_buff *skb, const char *func)
 			skb_set_hash(skb, skb_hnat_entry(skb) >> 1, PKT_HASH_TYPE_L4);
 
 		set_from_extge(skb);
-		fix_skb_packet_type(skb, skb->dev, eth);
-		skb->mark =11;
+		fix_skb_packet_type(skb, skb->dev, eth); 
 		netif_rx(skb);
 		trace_printk("%s: called from %s successfully\n", __func__,
 			     func);
