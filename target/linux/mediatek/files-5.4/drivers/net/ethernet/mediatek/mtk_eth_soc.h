@@ -511,11 +511,15 @@
 #define MTK_RX_DMA_BUF_SHIFT    8
 #define RX_DMA_SPORT_SHIFT      26
 #define RX_DMA_SPORT_MASK       0xf
+#define RX_DMA_CRSN_SHIFT      18
+#define RX_DMA_CRSN_MASK       0x1f
 #else
 #define MTK_RX_DMA_BUF_LEN      0x3fff
 #define MTK_RX_DMA_BUF_SHIFT    16
 #define RX_DMA_SPORT_SHIFT      19
 #define RX_DMA_SPORT_MASK       0x7
+#define RX_DMA_CRSN_SHIFT      14
+#define RX_DMA_CRSN_MASK       0x1f
 #endif
 
 /* QDMA descriptor txd4 */
