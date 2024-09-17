@@ -562,7 +562,7 @@
 #define RX_DMA_SPECIAL_TAG	BIT(22)		/* switch header in packet */
 
 #define RX_DMA_GET_SPORT(_x) 	(((_x) >> RX_DMA_SPORT_SHIFT) & RX_DMA_SPORT_MASK)
-
+#define RX_DMA_GET_CRSN(_x) 	(((_x) >> RX_DMA_CRSN_SHIFT) & RX_DMA_CRSN_MASK)
 /* PDMA V2 descriptor rxd3 */
 #define RX_DMA_VTAG_V2          BIT(0)
 #define RX_DMA_L4_VALID_V2      BIT(2)
