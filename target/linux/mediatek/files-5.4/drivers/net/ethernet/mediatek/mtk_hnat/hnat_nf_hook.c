@@ -1153,6 +1153,7 @@ mtk_hnat_br_nf_local_in(void *priv, struct sk_buff *skb,
 
 	pre_routing_print(skb, state->in, state->out, __func__);
 
+
 	if (unlikely(debug_level >= 7)) {
 		hnat_cpu_reason_cnt(skb);
 		if (skb_hnat_reason(skb) == dbg_cpu_reason)
