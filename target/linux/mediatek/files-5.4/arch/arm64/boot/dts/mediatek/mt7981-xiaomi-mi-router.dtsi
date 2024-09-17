@@ -79,6 +79,18 @@
 			pause;
 		};
 	};
+	
+	gmac1: mac@1 {
+		compatible = "mediatek,eth-mac";
+		reg = <1>;
+		phy-mode = "2500base-x";
+
+		fixed-link {
+			speed = <2500>;
+			full-duplex;
+			pause;
+		};
+	};
 
 
 	mdio: mdio-bus {
@@ -144,6 +156,7 @@
 
 &hnat {
 	mtketh-wan = "eth1";
+	mtketh-ppd = "eth1";
 	mtketh-lan = "lan";
 	mtketh-max-gmac = <2>;
 	status = "okay";
