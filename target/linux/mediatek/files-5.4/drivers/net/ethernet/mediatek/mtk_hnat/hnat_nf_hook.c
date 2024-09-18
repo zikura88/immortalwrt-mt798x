@@ -326,9 +326,9 @@ void foe_clear_all_bind_entries(struct net_device *dev)
 
 static void gmac_ppe_fwd_enable(struct net_device *dev)
 {
-	if (IS_LAN(dev) || IS_GMAC1_MODE)
+	//if (IS_LAN(dev) || IS_GMAC1_MODE)
 		set_gmac_ppe_fwd(0, 1);
-	else if (IS_WAN(dev))
+	//else if (IS_WAN(dev))
 		set_gmac_ppe_fwd(1, 1);
 }
 
