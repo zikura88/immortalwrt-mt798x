@@ -20,11 +20,11 @@ mediatek_setup_interfaces()
 			"0:lan" "1:lan" "2:lan" "3:lan" "4:lan" "6u@eth0"
 		;;
 	*2500wan-p5*)
-		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 lan4" wan
+		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 lan4 eth1" wan
 		;;
 	xiaomi,mi-router-ax3000t* |\
 	xiaomi,mi-router-wr30u*)
-		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3" wan
+		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 eth1" wan
 		;;
 	*360,t7*)
 		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 eth1" wan
@@ -36,20 +36,20 @@ mediatek_setup_interfaces()
 	h3c,nx30pro |\
 	*imou,lc-hx3001* |\
 	*konka,komi-a31*)
-		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3" wan
+		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3" eth1
 		;;
 	*cmcc,a10*)
-		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3" wan
+		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 eth1" wan
 		;;
 	*jcg,q30*)
 		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 eth1" wan
 		;;
 	abt,asr3000 |\
 	*rax3000m*)
-		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3" wan
+		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3" eth1
 		;;
 	*nokia,ea0326gmp*)
-		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3" wan
+		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3" eth1
 		;;
 	*mt3000* |\
 	glinet,x3000-emmc |\
@@ -58,7 +58,7 @@ mediatek_setup_interfaces()
 		ucidef_set_interfaces_lan_wan "eth1" "eth0"
 		;;
 	*zr-3020*)
-		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3" wan
+		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 eth1" wan
 		;;
 	nradio,wt9103)
 		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 lan4" eth1
