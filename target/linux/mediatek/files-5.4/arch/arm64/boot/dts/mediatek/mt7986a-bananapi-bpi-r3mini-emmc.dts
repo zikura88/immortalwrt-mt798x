@@ -247,9 +247,9 @@
 };
 
 &hnat {
-	mtketh-wan = "eth1";
+	mtketh-wan = "wan";
 	mtketh-lan = "eth0";
-	mtketh-ppd = "eth1";
+	mtketh-ppd = "wan";
 	mtketh-max-gmac = <2>;
 	status = "okay";
 };
