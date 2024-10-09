@@ -2514,8 +2514,7 @@ static void mtk_tx_timeout(struct net_device *dev)
 	netif_err(eth, tx_err, dev,
 		  "transmit timed out\n");
 
-	if (atomic_read(&reset_lock) == 0)
-		schedule_work(&eth->pending_work);
+
 }
 
 static irqreturn_t mtk_handle_irq_rx(int irq, void *priv)

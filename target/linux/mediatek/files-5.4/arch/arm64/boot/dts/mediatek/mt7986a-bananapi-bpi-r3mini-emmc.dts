@@ -249,6 +249,7 @@
 &hnat {
 	mtketh-wan = "eth1";
 	mtketh-lan = "eth0";
+	mtketh-ppd = "eth1";
 	mtketh-max-gmac = <2>;
 	status = "okay";
 };
@@ -321,6 +322,12 @@
 */
 
 &pio {
+	/* GPIO 11 NGFF_GNSS_OFF. output-high: enable, output-low: disable */
+	gnss_off {
+		gpio-hog;
+		gpios = <11 GPIO_ACTIVE_HIGH>;
+		output-high;
+	};
 
         mmc0_pins_default: mmc0-pins-50-to-61-default {
                 mux {
