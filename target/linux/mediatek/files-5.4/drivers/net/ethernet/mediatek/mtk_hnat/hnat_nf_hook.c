@@ -2303,10 +2303,10 @@ static unsigned int mtk_hnat_nf_post_routing(
 		return 0;
 
 		
-	#if defined(CONFIG_MEDIATEK_NETSYS_RX_V2)
-	if (!IS_WHNAT(out) && IS_EXT(out) && FROM_WED(skb))
+
+	if (!IS_WHNAT(out) && IS_EXT(out))
 		return 0;
-	#endif
+
 
  
 	trace_printk("[%s] case hit, %x-->%s, reason=%x\n", __func__,
