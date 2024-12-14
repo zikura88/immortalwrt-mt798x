@@ -2303,9 +2303,9 @@ static unsigned int mtk_hnat_nf_post_routing(
 		return 0;
 
 		
+
 	#if defined(CONFIG_MEDIATEK_NETSYS_RX_V2)
 	if (!IS_WHNAT(out) && IS_EXT(out) && FROM_WED(skb))
-		return 0;
 	#endif
 
  
