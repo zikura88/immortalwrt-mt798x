@@ -51,9 +51,12 @@ To build your own firmware you need a GNU/Linux, BSD or MacOSX system (case sens
   ### Quickstart
   1. Run `git clone --depth=1 https://github.com/padavanonly/immortalwrt-mt798x.git` to clone the source code.
   2. Run `cd immortalwrt-mt798x` to enter source directory.
-  3. Run `./scripts/feeds update -a` to obtain all the latest package definitions defined in feeds.conf / feeds.conf.default
-  4. Run `./scripts/feeds install -a` to install symlinks for all obtained packages into package/feeds/
-  5. Copy the configuration file for your device from the `defconfig` directory to the project root directory and rename it `.config`
+  3. 加入第三方的插件：
+     sed -i '1i src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
+     
+  5. Run `./scripts/feeds update -a` to obtain all the latest package definitions defined in feeds.conf / feeds.conf.default
+  6. Run `./scripts/feeds install -a` to install symlinks for all obtained packages into package/feeds/
+  7. Copy the configuration file for your device from the `defconfig` directory to the project root directory and rename it `.config`
      
      ```
      # MT7981
@@ -65,9 +68,11 @@ To build your own firmware you need a GNU/Linux, BSD or MacOSX system (case sens
      # MT7986 256M Low Memory
      cp -f defconfig/mt7986-ax6000-256m.config .config
      ```
-     
-  7. Run `make menuconfig` to select your preferred configuration for the toolchain, target system & firmware packages.
-  8. Run `make -j$(nproc)` to build your firmware. This will download all sources, build the cross-compile toolchain and then cross-compile the GNU/Linux kernel & all chosen applications for your target system.
+  
+  8. Run `make menuconfig` to select your preferred configuration for the toolchain, target system & firmware packages.
+  9. 用linux子系统编译时需加入一条
+    PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin make -j$(nproc)
+  10. Run `make -j$(nproc)` to build your firmware. This will download all sources, build the cross-compile toolchain and then cross-compile the GNU/Linux kernel & all chosen applications for your target system.
 
   ### Related Repositories
   The main repository uses multiple sub-repositories to manage packages of different categories. All packages are installed via the ImmortalWrt package manager called opkg. If you're looking to develop the web interface or port packages to ImmortalWrt, please find the fitting repository below.
