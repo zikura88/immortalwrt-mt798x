@@ -49,7 +49,7 @@ To build your own firmware you need a GNU/Linux, BSD or MacOSX system (case sens
   - For more details, please see [Build system setup](https://openwrt.org/docs/guide-developer/build-system/install-buildsystem) documentation.
 
   ### Quickstart
-  1. Run `git clone -b openwrt-21.02 https://github.com/zikura88/immortalwrt-mt798x.gi` to clone the source code.
+  1. Run `git clone -b openwrt-21.02 https://github.com/zikura88/immortalwrt-mt798x.git` to clone the source code.
   2. Run `cd immortalwrt-mt798x` to enter source directory.
   3. 加入第三方的插件：（容易出错，尽量不要全部加进去）
      sed -i '1i src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
